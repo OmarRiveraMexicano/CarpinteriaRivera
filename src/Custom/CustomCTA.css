@@ -1,0 +1,343 @@
+.custom-cta {
+    padding: 110px 24px;
+    background: var(--background);
+}
+
+.custom-cta-container {
+    width: min(1250px, 100%);
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 1fr 500px;
+    align-items: center;
+    gap: 70px;
+
+    padding: 72px;
+
+    border-radius: 30px;
+
+    background: var(--primary);
+
+    overflow: hidden;
+}
+
+/* ========================
+        CONTENIDO
+======================== */
+
+.custom-cta-content{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.custom-cta-label{
+    display:inline-block;
+
+    margin-bottom:18px;
+
+    color:#d8b58e;
+
+    font-size:.78rem;
+    font-weight:700;
+
+    letter-spacing:.18em;
+    text-transform:uppercase;
+}
+
+.custom-cta-content h2{
+
+    max-width:650px;
+
+    margin:0 0 26px;
+
+    color:white;
+
+    font-family:"Poppins",sans-serif;
+
+    font-size:clamp(2.8rem,5vw,5rem);
+
+    font-weight:500;
+
+    line-height:1.05;
+
+    letter-spacing:-.05em;
+}
+
+.custom-cta-content>p{
+
+    max-width:560px;
+
+    margin:0;
+
+    color:rgba(255,255,255,.72);
+
+    font-size:1.05rem;
+
+    line-height:1.8;
+}
+
+/* ========================
+        BENEFICIOS
+======================== */
+
+.custom-cta-features{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:14px 24px;
+
+    margin:36px 0;
+}
+
+.custom-cta-features span{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:white;
+
+    font-size:.95rem;
+
+    font-weight:500;
+}
+
+.custom-cta-features svg{
+
+    color:#d8b58e;
+}
+
+/* ========================
+          BOTÓN
+======================== */
+
+.custom-cta-button{
+
+    width:max-content;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    padding:15px 28px;
+
+    border-radius:999px;
+
+    background:#F8F6F2;
+
+    color:var(--primary);
+
+    font-weight:600;
+
+    text-decoration:none;
+
+    transition:.3s;
+}
+
+.custom-cta-button:hover{
+
+    transform:translateY(-3px);
+
+    background:#efe5da;
+}
+
+.custom-cta-button svg{
+
+    transition:.3s;
+}
+
+.custom-cta-button:hover svg{
+
+    transform:translate(3px,-3px);
+}
+
+/* ========================
+        IMAGEN
+======================== */
+
+.custom-cta-visual{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+}
+
+.custom-cta-image{
+
+    position:relative;
+
+    height:460px;
+
+    border-radius:28px;
+
+    background-size:cover;
+
+    background-position:58% 35%;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 25px 50px rgba(0,0,0,.22);
+}
+
+.custom-cta-image::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+    linear-gradient(
+        to top,
+        rgba(0,0,0,.28),
+        rgba(0,0,0,0)
+    );
+}
+
+.custom-cta-image-label{
+
+    position:absolute;
+
+    left:22px;
+
+    bottom:22px;
+
+    z-index:2;
+
+    padding:11px 18px;
+
+    border-radius:999px;
+
+    backdrop-filter:blur(10px);
+
+    background:rgba(255,255,255,.12);
+
+    border:1px solid rgba(255,255,255,.25);
+
+    color:white;
+
+    font-size:.82rem;
+
+    font-weight:600;
+
+    letter-spacing:.08em;
+
+    text-transform:uppercase;
+}
+
+/* ========================
+      TARJETA INFERIOR
+======================== */
+
+.custom-cta-note{
+
+    display:grid;
+
+    grid-template-columns:40px 1fr;
+
+    gap:18px;
+
+    padding:22px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.custom-cta-note span{
+
+    color:#d8b58e;
+
+    font-size:1rem;
+
+    font-weight:700;
+}
+
+.custom-cta-note p{
+
+    margin:0;
+
+    color:rgba(255,255,255,.72);
+
+    line-height:1.7;
+
+    font-size:.92rem;
+}
+
+/* ========================
+        TABLET
+======================== */
+
+@media(max-width:980px){
+
+    .custom-cta-container{
+
+        grid-template-columns:1fr;
+
+        gap:55px;
+
+        padding:55px;
+    }
+
+    .custom-cta-image{
+
+        height:420px;
+    }
+}
+
+/* ========================
+        MÓVIL
+======================== */
+
+@media(max-width:640px){
+
+    .custom-cta{
+
+        padding:80px 18px;
+    }
+
+    .custom-cta-container{
+
+        padding:36px 24px;
+
+        border-radius:24px;
+    }
+
+    .custom-cta-content h2{
+
+        font-size:clamp(2.4rem,12vw,4rem);
+    }
+
+    .custom-cta-features{
+
+        flex-direction:column;
+    }
+
+    .custom-cta-button{
+
+        width:100%;
+
+        justify-content:center;
+    }
+
+    .custom-cta-image{
+
+        height:320px;
+
+        border-radius:18px;
+    }
+}

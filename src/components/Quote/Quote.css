@@ -1,0 +1,337 @@
+.quote-page {
+    min-height: 100vh;
+
+    color: #2d2926;
+    background: #f8f6f2;
+}
+
+.quote-container {
+    width: min(1180px, calc(100% - 48px));
+    margin: 0 auto;
+}
+
+/* Hero */
+
+.quote-hero {
+    padding: 165px 0 90px;
+
+    background:
+        radial-gradient(
+            circle at 85% 20%,
+            rgba(184, 128, 77, 0.14),
+            transparent 35%
+        ),
+        #f8f6f2;
+}
+
+.quote-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 24px;
+
+    color: #b9804d;
+
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+}
+
+.quote-eyebrow::before {
+    content: "";
+
+    width: 34px;
+    height: 1px;
+
+    background: currentColor;
+}
+
+.quote-hero h1 {
+    max-width: 900px;
+    margin: 0 0 28px;
+
+    color: #654431;
+
+    font-family: "Poppins", sans-serif;
+    font-size: clamp(3.5rem, 7vw, 6.7rem);
+    font-weight: 500;
+    line-height: 0.98;
+    letter-spacing: -0.065em;
+}
+
+.quote-hero p {
+    max-width: 640px;
+    margin: 0;
+
+    color: #746b65;
+
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+/* Form section */
+
+.quote-section {
+    padding: 40px 0 130px;
+}
+
+.quote-layout {
+    display: grid;
+    grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1.28fr);
+    align-items: start;
+    gap: clamp(50px, 8vw, 110px);
+}
+
+.quote-information {
+    position: sticky;
+    top: 120px;
+
+    padding-top: 25px;
+}
+
+.quote-information > span {
+    display: block;
+
+    margin-bottom: 20px;
+
+    color: #b9804d;
+
+    font-size: 0.73rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.quote-information h2 {
+    margin: 0 0 25px;
+
+    color: #654431;
+
+    font-family: "Poppins", sans-serif;
+    font-size: clamp(2.2rem, 4vw, 3.8rem);
+    font-weight: 500;
+    line-height: 1.08;
+    letter-spacing: -0.045em;
+}
+
+.quote-information p {
+    margin: 0 0 28px;
+
+    color: #746b65;
+
+    line-height: 1.8;
+}
+
+.quote-information ul {
+    display: grid;
+    gap: 14px;
+
+    margin: 0;
+    padding: 0;
+
+    color: #625a55;
+
+    list-style: none;
+}
+
+.quote-information li {
+    position: relative;
+
+    padding-left: 24px;
+
+    line-height: 1.6;
+}
+
+.quote-information li::before {
+    content: "";
+
+    position: absolute;
+    top: 0.65em;
+    left: 0;
+
+    width: 7px;
+    height: 7px;
+
+    background: #b9804d;
+
+    border-radius: 50%;
+}
+
+/* Form */
+
+.quote-form {
+    padding: clamp(28px, 4vw, 48px);
+
+    background: rgba(255, 255, 255, 0.78);
+
+    border: 1px solid rgba(91, 58, 41, 0.08);
+    border-radius: 28px;
+
+    box-shadow: 0 25px 60px rgba(72, 49, 37, 0.08);
+}
+
+.quote-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.quote-field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.quote-field--full {
+    grid-column: 1 / -1;
+}
+
+.quote-field label {
+    color: #654431;
+
+    font-size: 0.84rem;
+    font-weight: 700;
+}
+
+.quote-field input,
+.quote-field select,
+.quote-field textarea {
+    width: 100%;
+
+    padding: 15px 16px;
+
+    color: #2d2926;
+    background: #fff;
+
+    border: 1px solid rgba(91, 58, 41, 0.14);
+    border-radius: 13px;
+    outline: none;
+
+    font: inherit;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+.quote-field textarea {
+    min-height: 170px;
+
+    resize: vertical;
+}
+
+.quote-field input::placeholder,
+.quote-field textarea::placeholder {
+    color: #aaa19a;
+}
+
+.quote-field input:focus,
+.quote-field select:focus,
+.quote-field textarea:focus {
+    border-color: #b9804d;
+
+    box-shadow: 0 0 0 4px rgba(184, 128, 77, 0.12);
+}
+
+.quote-submit {
+    width: 100%;
+    min-height: 58px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    margin-top: 30px;
+    padding: 0 25px;
+
+    color: #fff;
+    background: #654431;
+
+    border: none;
+    border-radius: 14px;
+
+    font: inherit;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.quote-submit:hover {
+    background: #b9804d;
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 15px 30px rgba(91, 58, 41, 0.18);
+}
+
+.quote-submit:active {
+    transform: scale(0.98);
+}
+
+.quote-disclaimer {
+    margin: 16px 0 0;
+
+    color: #928a84;
+
+    font-size: 0.78rem;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+    .quote-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .quote-information {
+        position: static;
+
+        max-width: 720px;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 620px) {
+    .quote-container {
+        width: min(100% - 28px, 1180px);
+    }
+
+    .quote-hero {
+        padding: 125px 0 70px;
+    }
+
+    .quote-hero h1 {
+        font-size: clamp(3rem, 14vw, 4.7rem);
+    }
+
+    .quote-section {
+        padding: 20px 0 90px;
+    }
+
+    .quote-form {
+        padding: 25px 18px;
+
+        border-radius: 21px;
+    }
+
+    .quote-form-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .quote-field--full {
+        grid-column: auto;
+    }
+}
