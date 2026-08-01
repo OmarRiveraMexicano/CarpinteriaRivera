@@ -4,7 +4,7 @@ const products = [
         name: "Repisa Flotante Oslo",
         price: 799,
         category: "Repisas",
-        image: "/products/repisa-flotante.jpg",
+        image: "/images/oslo.jpg",
         description:
             "Repisa de pino macizo con diseño minimalista y acabado mate.",
         stock: 8,
@@ -14,7 +14,7 @@ const products = [
         name: "Repisa Esquinera Nórdica",
         price: 949,
         category: "Repisas",
-        image: "/products/repisa-esquinera.jpg",
+        image: "/images/nordica.jpg",
         description:
             "Repisa esquinera compacta, ideal para aprovechar espacios pequeños.",
         stock: 5,
