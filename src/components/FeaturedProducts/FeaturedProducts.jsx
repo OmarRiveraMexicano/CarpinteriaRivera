@@ -1,8 +1,11 @@
 import "./FeaturedProducts.css";
 
+import { useNavigate } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
 
 import ProductCard from "../ProductCart/ProductCar";
+
+const baseUrl = import.meta.env.BASE_URL;
 
 const featuredProducts = [
     {
@@ -11,7 +14,7 @@ const featuredProducts = [
         category: "Repisas",
         description: "Ideal para decorar cualquier espacio.",
         price: 850,
-        image: "repisa.jpg",
+        image: `${baseUrl}repisa.jpg`,
         badge: "Nuevo",
     },
     {
@@ -20,7 +23,7 @@ const featuredProducts = [
         category: "Mesas",
         description: "Diseño minimalista en madera de pino.",
         price: 1900,
-        image: "mesa.jpg",
+        image: `${baseUrl}mesa.jpg`,
         badge: "Popular",
     },
     {
@@ -30,7 +33,7 @@ const featuredProducts = [
         description:
             "Fabricada en madera resistente para exteriores.",
         price: 2300,
-        image: "casa.jpg",
+        image: `${baseUrl}casa.jpg`,
     },
     {
         id: 4,
@@ -39,11 +42,13 @@ const featuredProducts = [
         description:
             "Perfecto para mantener tus relojes protegidos.",
         price: 650,
-        image: "reloj.jpg",
+        image: `${baseUrl}reloj.jpg`,
     },
 ];
 
 function FeaturedProducts() {
+    const navigate = useNavigate();
+
     return (
         <section
             className="featured-products"
@@ -71,13 +76,14 @@ function FeaturedProducts() {
                         </p>
                     </div>
 
-                    <a
-                        href="#catalogo"
+                    <button
+                        type="button"
                         className="featured-products-link"
+                        onClick={() => navigate("/catalogo")}
                     >
                         Ver catálogo
                         <FiArrowRight />
-                    </a>
+                    </button>
                 </div>
 
                 <div className="featured-products-grid">

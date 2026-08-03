@@ -9,6 +9,8 @@ import {
 import "./About.css";
 
 function About() {
+    const baseUrl = import.meta.env.BASE_URL;
+
     return (
         <main className="about-page">
             <section className="about-hero">
@@ -46,22 +48,25 @@ function About() {
                     <div className="about-gallery">
                         <figure className="about-image about-image-main">
                             <img
-                                src="/trabajo.jpg"
+                                src={`${baseUrl}trabajo.jpg`}
                                 alt="Creador del taller trabajando en uno de sus proyectos"
+                                loading="lazy"
                             />
                         </figure>
 
                         <figure className="about-image about-image-small">
                             <img
-                                src="/guapo.jpg"
-                                alt="Herramientas y espacio de trabajo"
+                                src={`${baseUrl}guapo.jpg`}
+                                alt="Retrato del creador del proyecto"
+                                loading="lazy"
                             />
                         </figure>
 
                         <figure className="about-image about-image-detail">
                             <img
-                                src="/taladro.jpg"
-                                alt="Detalle de una pieza de madera hecha a mano"
+                                src={`${baseUrl}taladro.jpg`}
+                                alt="Trabajo con un taladro sobre una pieza de madera"
+                                loading="lazy"
                             />
                         </figure>
                     </div>
@@ -113,15 +118,16 @@ function About() {
                 <div className="about-container">
                     <div className="about-values-heading">
                         <span>Lo que me define</span>
-                        <h2>Dos mundos, una misma forma de trabajar.</h2>
+
+                        <h2>
+                            Dos mundos, una misma forma de trabajar.
+                        </h2>
                     </div>
 
                     <div className="about-values-grid">
                         <article className="about-value-card">
                             <FiCode />
-
                             <span>01</span>
-
                             <h3>Tecnología</h3>
 
                             <p>
@@ -133,9 +139,7 @@ function About() {
 
                         <article className="about-value-card">
                             <FiTool />
-
                             <span>02</span>
-
                             <h3>Carpintería</h3>
 
                             <p>
@@ -146,9 +150,7 @@ function About() {
 
                         <article className="about-value-card">
                             <FiBookOpen />
-
                             <span>03</span>
-
                             <h3>Aprendizaje</h3>
 
                             <p>
@@ -173,7 +175,10 @@ function About() {
                         </h2>
                     </div>
 
-                    <Link to="/catalogo" className="about-cta-link">
+                    <Link
+                        to="/catalogo"
+                        className="about-cta-link"
+                    >
                         Explorar piezas
                         <FiArrowUpRight />
                     </Link>

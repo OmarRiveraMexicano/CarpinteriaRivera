@@ -1,10 +1,12 @@
+const baseUrl = import.meta.env.BASE_URL;
+
 const products = [
     {
         id: 1,
         name: "Repisa Flotante Oslo",
         price: 799,
         category: "Repisas",
-        image: "/images/oslo.jpg",
+        image: `${baseUrl}images/oslo.jpg`,
         description:
             "Repisa de pino macizo con diseño minimalista y acabado mate.",
         stock: 8,
@@ -14,7 +16,7 @@ const products = [
         name: "Repisa Esquinera Nórdica",
         price: 949,
         category: "Repisas",
-        image: "/images/nordica.jpg",
+        image: `${baseUrl}images/nordica.jpg`,
         description:
             "Repisa esquinera compacta, ideal para aprovechar espacios pequeños.",
         stock: 5,
@@ -24,12 +26,12 @@ const products = [
         name: "Mesa de Centro Aura",
         price: 3499,
         category: "Mesas",
-        image: "/products/mesa-centro.jpg",
-        images:[
-            "/mesa.jpg",
-            "/mesa.jpg",
-            "/mesa.jpg",  
-            "/mesa.jpg"
+        image: `${baseUrl}products/mesa-centro.jpg`,
+        images: [
+            `${baseUrl}mesa.jpg`,
+            `${baseUrl}mesa.jpg`,
+            `${baseUrl}mesa.jpg`,
+            `${baseUrl}mesa.jpg`,
         ],
         description:
             "Mesa de centro artesanal fabricada en madera sólida.",
@@ -40,7 +42,7 @@ const products = [
         name: "Escritorio Studio",
         price: 4299,
         category: "Escritorios",
-        image: "/products/escritorio.jpg",
+        image: `${baseUrl}products/escritorio.jpg`,
         description:
             "Escritorio funcional con espacio amplio para trabajar o estudiar.",
         stock: 3,
@@ -50,7 +52,7 @@ const products = [
         name: "Buró Minimal",
         price: 2299,
         category: "Dormitorio",
-        image: "/products/buro.jpg",
+        image: `${baseUrl}products/buro.jpg`,
         description:
             "Buró compacto con cajón y acabado natural de estilo contemporáneo.",
         stock: 6,
@@ -60,7 +62,7 @@ const products = [
         name: "Mesa de Noche Siena",
         price: 1999,
         category: "Dormitorio",
-        image: "/products/mesa-noche.jpg",
+        image: `${baseUrl}products/mesa-noche.jpg`,
         description:
             "Mesa de noche ligera con espacio de almacenamiento abierto.",
         stock: 7,
@@ -70,7 +72,7 @@ const products = [
         name: "Zapatera Vertical",
         price: 2899,
         category: "Organización",
-        image: "/products/zapatera.jpg",
+        image: `${baseUrl}products/zapatera.jpg`,
         description:
             "Zapatera vertical diseñada para mantener organizado tu calzado.",
         stock: 4,
@@ -80,7 +82,7 @@ const products = [
         name: "Organizador de Relojes",
         price: 1199,
         category: "Organización",
-        image: "/products/organizador-relojes.jpg",
+        image: `${baseUrl}products/organizador-relojes.jpg`,
         description:
             "Organizador artesanal con diez espacios individuales para relojes.",
         stock: 10,
@@ -90,7 +92,7 @@ const products = [
         name: "Casa para Perro Rustik",
         price: 3799,
         category: "Mascotas",
-        image: "/products/casa-perro.jpg",
+        image: `${baseUrl}products/casa-perro.jpg`,
         description:
             "Casa de madera resistente, diseñada para brindar comodidad y protección.",
         stock: 2,
@@ -100,7 +102,7 @@ const products = [
         name: "Librero Modular",
         price: 4999,
         category: "Libreros",
-        image: "/products/librero.jpg",
+        image: `${baseUrl}products/librero.jpg`,
         description:
             "Librero modular de gran capacidad para libros, decoración y almacenamiento.",
         stock: 3,
