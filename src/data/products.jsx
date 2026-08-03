@@ -26,7 +26,7 @@ const products = [
         name: "Mesa de Centro Aura",
         price: 3499,
         category: "Mesas",
-        image: `${baseUrl}products/mesa-centro.jpg`,
+        image: `${baseUrl}images/mesa-centro.jpg`,
         images: [
             `${baseUrl}mesa.jpg`,
             `${baseUrl}mesa.jpg`,
@@ -42,7 +42,7 @@ const products = [
         name: "Escritorio Studio",
         price: 4299,
         category: "Escritorios",
-        image: `${baseUrl}products/escritorio.jpg`,
+        image: `${baseUrl}images/escritorio.jpg`,
         description:
             "Escritorio funcional con espacio amplio para trabajar o estudiar.",
         stock: 3,
@@ -52,7 +52,7 @@ const products = [
         name: "Buró Minimal",
         price: 2299,
         category: "Dormitorio",
-        image: `${baseUrl}products/buro.jpg`,
+        image: `${baseUrl}images/buro.jpg`,
         description:
             "Buró compacto con cajón y acabado natural de estilo contemporáneo.",
         stock: 6,
@@ -62,7 +62,7 @@ const products = [
         name: "Mesa de Noche Siena",
         price: 1999,
         category: "Dormitorio",
-        image: `${baseUrl}products/mesa-noche.jpg`,
+        image: `${baseUrl}images/mesa-noche.jpg`,
         description:
             "Mesa de noche ligera con espacio de almacenamiento abierto.",
         stock: 7,
@@ -72,7 +72,7 @@ const products = [
         name: "Zapatera Vertical",
         price: 2899,
         category: "Organización",
-        image: `${baseUrl}products/zapatera.jpg`,
+        image: `${baseUrl}images/zapatera.jpg`,
         description:
             "Zapatera vertical diseñada para mantener organizado tu calzado.",
         stock: 4,
@@ -82,7 +82,7 @@ const products = [
         name: "Organizador de Relojes",
         price: 1199,
         category: "Organización",
-        image: `${baseUrl}products/organizador-relojes.jpg`,
+        image: `${baseUrl}reloj.jpg`,
         description:
             "Organizador artesanal con diez espacios individuales para relojes.",
         stock: 10,
@@ -92,7 +92,7 @@ const products = [
         name: "Casa para Perro Rustik",
         price: 3799,
         category: "Mascotas",
-        image: `${baseUrl}products/casa-perro.jpg`,
+        image: `${baseUrl}casa.jpg`,
         description:
             "Casa de madera resistente, diseñada para brindar comodidad y protección.",
         stock: 2,
@@ -102,7 +102,7 @@ const products = [
         name: "Librero Modular",
         price: 4999,
         category: "Libreros",
-        image: `${baseUrl}products/librero.jpg`,
+        image: `${baseUrl}images/librero.jpg`,
         description:
             "Librero modular de gran capacidad para libros, decoración y almacenamiento.",
         stock: 3,
