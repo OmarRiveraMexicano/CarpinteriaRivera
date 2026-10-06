@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import {
+    Link,
+    useNavigate,
+    useParams,
+} from "react-router-dom";
+
 import {
     FiArrowLeft,
     FiChevronRight,
@@ -10,7 +15,11 @@ import {
 
 import ProductCard from "../components/ProductCart/ProductCar";
 
-import products from "../data/products";
+import {
+    getProductById,
+    getProducts,
+} from "../components/Services/productServices";
+
 import { useCart } from "../context/CartContext";
 
 import "./ProductDetail.css";
@@ -20,22 +29,104 @@ function ProductDetail() {
     const navigate = useNavigate();
     const { addToCart } = useCart();
 
-    const [quantity, setQuantity] = useState(1);
-    const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+    const [product, setProduct] = useState(null);
+    const [relatedProducts, setRelatedProducts] = useState([]);
 
-    const product = products.find(
-        (item) => item.id === Number(id)
-    );
+    const [quantity, setQuantity] = useState(1);
+    const [selectedImageIndex, setSelectedImageIndex] =
+        useState(0);
+
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
 
     useEffect(() => {
-        setQuantity(1);
-        setSelectedImageIndex(0);
+        const loadProduct = async () => {
+            try {
+                setLoading(true);
+                setError("");
+                setQuantity(1);
+                setSelectedImageIndex(0);
+
+                const currentProduct =
+                    await getProductById(id);
+
+                setProduct(currentProduct);
+
+                if (!currentProduct) {
+                    setRelatedProducts([]);
+                    return;
+                }
+
+                const allProducts = await getProducts();
+
+                const sameCategoryProducts =
+                    allProducts.filter(
+                        (item) =>
+                            item.category ===
+                                currentProduct.category &&
+                            item.id !== currentProduct.id
+                    );
+
+                const otherProducts = allProducts.filter(
+                    (item) =>
+                        item.category !==
+                            currentProduct.category &&
+                        item.id !== currentProduct.id
+                );
+
+                setRelatedProducts(
+                    [
+                        ...sameCategoryProducts,
+                        ...otherProducts,
+                    ].slice(0, 3)
+                );
+            } catch (error) {
+                console.error(error);
+
+                setError(
+                    "No fue posible cargar el producto."
+                );
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        loadProduct();
 
         window.scrollTo({
             top: 0,
             behavior: "smooth",
         });
     }, [id]);
+
+    if (loading) {
+        return (
+            <main className="product-detail-page">
+                <div className="product-detail-container">
+                    <p className="product-detail-status">
+                        Cargando producto...
+                    </p>
+                </div>
+            </main>
+        );
+    }
+
+    if (error) {
+        return (
+            <main className="product-not-found">
+                <span>Error</span>
+
+                <h1>{error}</h1>
+
+                <button
+                    type="button"
+                    onClick={() => window.location.reload()}
+                >
+                    Intentar de nuevo
+                </button>
+            </main>
+        );
+    }
 
     if (!product) {
         return (
@@ -53,48 +144,28 @@ function ProductDetail() {
         );
     }
 
-    /*
-     * Mantiene compatibilidad con tus productos actuales.
-     *
-     * Si el producto tiene images, usa la galería.
-     * Si solamente tiene image, crea una galería de una imagen.
-     */
     const productImages =
         product.images?.length > 0
             ? product.images
             : [product.image];
 
     const selectedImage =
-        productImages[selectedImageIndex] ?? productImages[0];
+        productImages[selectedImageIndex] ??
+        productImages[0];
 
-    const sameCategoryProducts = products.filter(
-        (item) =>
-            item.category === product.category &&
-            item.id !== product.id
-    );
+    const formattedPrice =
+        new Intl.NumberFormat("es-MX", {
+            style: "currency",
+            currency: "MXN",
+            maximumFractionDigits: 0,
+        }).format(product.price);
 
-    const otherProducts = products.filter(
-        (item) =>
-            item.category !== product.category &&
-            item.id !== product.id
-    );
-
-    const relatedProducts = [
-        ...sameCategoryProducts,
-        ...otherProducts,
-    ].slice(0, 3);
-
-    const formattedPrice = new Intl.NumberFormat("es-MX", {
-        style: "currency",
-        currency: "MXN",
-        maximumFractionDigits: 0,
-    }).format(product.price);
-
-    const formattedSubtotal = new Intl.NumberFormat("es-MX", {
-        style: "currency",
-        currency: "MXN",
-        maximumFractionDigits: 0,
-    }).format(product.price * quantity);
+    const formattedSubtotal =
+        new Intl.NumberFormat("es-MX", {
+            style: "currency",
+            currency: "MXN",
+            maximumFractionDigits: 0,
+        }).format(product.price * quantity);
 
     const decreaseQuantity = () => {
         setQuantity((currentQuantity) =>
@@ -104,14 +175,15 @@ function ProductDetail() {
 
     const increaseQuantity = () => {
         setQuantity((currentQuantity) =>
-            Math.min(product.stock, currentQuantity + 1)
+            Math.min(
+                product.stock,
+                currentQuantity + 1
+            )
         );
     };
 
     const handleAddToCart = () => {
-        for (let index = 0; index < quantity; index += 1) {
-            addToCart(product);
-        }
+        addToCart(product, quantity);
     };
 
     return (
@@ -125,7 +197,9 @@ function ProductDetail() {
 
                     <FiChevronRight />
 
-                    <Link to="/catalogo">Catálogo</Link>
+                    <Link to="/catalogo">
+                        Catálogo
+                    </Link>
 
                     <FiChevronRight />
 
@@ -161,43 +235,42 @@ function ProductDetail() {
 
                             {productImages.length > 1 && (
                                 <span className="product-detail-image-counter">
-                                    {selectedImageIndex + 1} /{" "}
+                                    {selectedImageIndex + 1}
+                                    {" / "}
                                     {productImages.length}
                                 </span>
                             )}
                         </div>
 
                         {productImages.length > 1 && (
-                            <div
-                                className="product-detail-thumbnails"
-                                aria-label={`Galería de ${product.name}`}
-                            >
-                                {productImages.map((image, index) => (
-                                    <button
-                                        key={`${product.id}-${image}`}
-                                        type="button"
-                                        className={
-                                            selectedImageIndex === index
-                                                ? "product-detail-thumbnail active"
-                                                : "product-detail-thumbnail"
-                                        }
-                                        onClick={() =>
-                                            setSelectedImageIndex(index)
-                                        }
-                                        aria-label={`Mostrar vista ${
-                                            index + 1
-                                        } de ${product.name}`}
-                                        aria-pressed={
-                                            selectedImageIndex === index
-                                        }
-                                    >
-                                        <img
-                                            src={image}
-                                            alt=""
-                                            aria-hidden="true"
-                                        />
-                                    </button>
-                                ))}
+                            <div className="product-detail-thumbnails">
+                                {productImages.map(
+                                    (image, index) => (
+                                        <button
+                                            key={`${product.id}-${index}`}
+                                            type="button"
+                                            className={
+                                                selectedImageIndex ===
+                                                index
+                                                    ? "product-detail-thumbnail active"
+                                                    : "product-detail-thumbnail"
+                                            }
+                                            onClick={() =>
+                                                setSelectedImageIndex(
+                                                    index
+                                                )
+                                            }
+                                            aria-label={`Mostrar vista ${
+                                                index + 1
+                                            } de ${product.name}`}
+                                        >
+                                            <img
+                                                src={image}
+                                                alt=""
+                                            />
+                                        </button>
+                                    )
+                                )}
                             </div>
                         )}
                     </div>
@@ -251,22 +324,29 @@ function ProductDetail() {
                                     <div className="product-detail-quantity">
                                         <button
                                             type="button"
-                                            onClick={decreaseQuantity}
-                                            disabled={quantity === 1}
+                                            onClick={
+                                                decreaseQuantity
+                                            }
+                                            disabled={
+                                                quantity === 1
+                                            }
                                             aria-label="Disminuir cantidad"
                                         >
                                             <FiMinus />
                                         </button>
 
-                                        <span aria-live="polite">
+                                        <span>
                                             {quantity}
                                         </span>
 
                                         <button
                                             type="button"
-                                            onClick={increaseQuantity}
+                                            onClick={
+                                                increaseQuantity
+                                            }
                                             disabled={
-                                                quantity === product.stock
+                                                quantity ===
+                                                product.stock
                                             }
                                             aria-label="Aumentar cantidad"
                                         >
@@ -305,21 +385,30 @@ function ProductDetail() {
                         <div className="related-products-heading">
                             <span>Descubre más</span>
 
-                            <h2>También te puede interesar</h2>
+                            <h2>
+                                También te puede interesar
+                            </h2>
 
                             <p>
-                                Piezas cuidadosamente seleccionadas para
-                                complementar este producto.
+                                Piezas cuidadosamente
+                                seleccionadas para complementar
+                                este producto.
                             </p>
                         </div>
 
                         <div className="related-products-grid">
-                            {relatedProducts.map((relatedProduct) => (
-                                <ProductCard
-                                    key={relatedProduct.id}
-                                    product={relatedProduct}
-                                />
-                            ))}
+                            {relatedProducts.map(
+                                (relatedProduct) => (
+                                    <ProductCard
+                                        key={
+                                            relatedProduct.id
+                                        }
+                                        product={
+                                            relatedProduct
+                                        }
+                                    />
+                                )
+                            )}
                         </div>
                     </section>
                 )}
